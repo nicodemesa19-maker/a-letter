@@ -274,6 +274,26 @@
       background: #ede0cf;
     }
 
+    /* YouTube embed styling for reliable music */
+    .youtube-wrapper {
+      margin-top: 25px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .youtube-wrapper iframe {
+      border-radius: 28px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .song-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: #9b7c5c;
+      margin-top: 6px;
+      letter-spacing: 1px;
+    }
+
     @media (max-width: 650px) {
       body { padding: 1rem; }
       .letter-paper { padding: 1.6rem 1.3rem; }
@@ -284,6 +304,7 @@
       .invite-text { font-size: 1rem; padding: 0.4rem 1.2rem; }
       .back-button, .music-control { padding: 7px 16px; font-size: 0.75rem; }
       .button-wrapper { justify-content: center; }
+      .youtube-wrapper iframe { width: 260px; height: 50px; }
     }
   </style>
 </head>
@@ -309,7 +330,7 @@
     <div class="letter-content" id="letterContent">
       <div class="letter-paper">
         <div class="letter-meta">
-          <span>✧ NOT A GRADUATION LETTER ✧</span>
+          <span>✧ not a graduation letter ✧</span>
           <span>🎓</span>
         </div>
         <div class="greeting">Dearest Julianne,</div>
@@ -319,21 +340,36 @@
           <p>Balak ko sana sa June 3 sa concert ng Over October or sa Graduation para personal, kaso mukhang malabo. Naghihirap si tropa ngayon. Napagsama ko pa tuloy yung graduation gift sa confession gift ko, hehe.</p>
           <p>I don't know kung nahalata mo na noon pa lang or may hints ka na based sa mga actions ko or what. Pero ayun, since 1st year ko pa 'to tinatago. Omsim. Nag-start 'yon nung online class. Isa ka kasi sa mga active sa recit noon, and ang galing mo mag-explain, lalo na sa reporting. Wala ehh, attracted talaga ako sa brainy.</p>
           <p>Then CWTS. Noon pa lang kita nakita na personally. Tangina, magka-group pa tayo. Tuwang tuwa ako noon kasi magkakaroon na tayo ng interaction since magka-group tayo. Tanda ko pa ang first interaction natin noon. May pinasagutan ka sa'king 4 pics 1 word sa phone ni Jan-jan. Kabado ako noon. Bigla mo na lang hinarap sa'kin yung phone. Buti na lang nasagot ko, "Primary." Sa sobrang delulu ko noon, nagkwento agad ako kay Kulot sa interaction natin. Hahahahaha.</p>
-          <p>I find you attractive kasi academically inclined ka, medyo boyish (no offense, pero yan talaga ang isa sa mga nagustuhan ko sa'yo), straight forward, at syempre, maganda (tangina, yang kilay at mata mo, Madam. Nakakapanghina. Kaya 'di ko kayang makipag-eye contact sa'yo nang seryoso. Natutulala ako, no joke.)</p>
+          <p>I find you attractive kasi academically inclined ka, medyo boyish (no offense, pero yan talaga ang isa sa mga nagustuhan ko sa'yo), straight forward, at syempre, maganda (yang kilay at mata mo, Madam. Nakakapanghina. Kaya 'di ko kayang makipag-eye contact sa'yo nang seryoso. Natutulala ako, no joke.)</p>
           <p>Ikukwento ko pa sana yung mga details ng pagiging delulu ko sa'yo, kaso alam kong busy ka pa. Send 1 dot sa Messenger kung gusto mong marinig. Hahahaha.</p>
-          <div class="dot-whisper">💬 “Send 1 dot sa Messenger kung gusto mong marinig.” — I'll be here. no pressure, ever.</div>
-          <p>Baka magtaka ka din na sinabi kong since 1st year pa 'to, eh alam ko naman na alam mo kung sino yung mga nakausap ko that time. And yes, 'di siya maganda. Mukha tuloy akong babaero noon. Alam kong hindi mo kailangan ng explanation, but let me. Kala ko kasi noon, mawawala pa yung nararamdaman ko sa'yo kasi ilang months pa lang naman. Tropa na kasi tayo non and kontento na ako don that time. Nagkekwento ka rin noon na naiinis ka sa mga classmates natin na nagcha-chat sa'yo. Kaya nag-entertain ako sa mga reto sa'kin, and mali 'yon, alam ko. Natakot kasi ako noon na baka may magbago kung itutuloy ko yung feelings ko sa'yo.</p>
+          
+          <div class="dot-whisper">💬 "Send 1 dot sa Messenger kung gusto mong marinig."</div>
+          
           <p>Wala ehh. Ikaw talaga. Kaya tinago ko na lang. Kabado pa nga ako pag may inuman. Baka bigla akong umamin. Hahahaha.</p>
           <p>Ayoko lang talaga 'tong maging regret someday, yung hindi ako umamin. Kasi it's been bugging me for days. Yung mga what ifs ko, talagang nanlalaban. "What if umamin ako noong nandyan pa ako?" "What if may chance pala ako?" (Assumero yarn? Kaka-AU mo yan.)</p>
           <p>Kasi I had plans talaga to pursue you back then. Gusto kitang i-spoil kasi I have the means back then, take you outside, or bigyan ng "just because" gifts. Regret ko talaga 'yan na hindi ko ginawa noon kahit kaya ko naman. Kasi you deserve better than the bare minimum. You are worth pursuing, kaso naduwag ako.</p>
           <p>Alam ko rin na magtatagal pa tong feelings ko, pero tatanggapin ko kahit anong maging sagot mo. Wala kang obligasyon or anything. Gusto ko lang i-express yung feelings na tinago ko for years.</p>
         </div>
+        
+        <!-- YouTube Song Embed - Nahuhulog by Jed Baruelo (loops automatically) -->
+        <div class="youtube-wrapper">
+          <iframe 
+            src="https://www.youtube.com/embed/HrsOWeRrLV0?autoplay=0&loop=1&playlist=HrsOWeRrLV0" 
+            width="320" 
+            height="60" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+          <div class="song-label">🎵 "Nahuhulog" — Jed Baruelo 🎵</div>
+        </div>
+        
         <div class="signature-area"><hr class="soft-divider"></div>
       </div>
     </div>
   </div>
 
-  <audio id="bgMusic" loop preload="auto">
+  <audio id="bgMusic" loop preload="auto" style="display: none;">
     <source src="song.mp3" type="audio/mpeg">
   </audio>
 
