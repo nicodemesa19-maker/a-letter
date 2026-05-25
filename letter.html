@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <title>For Julianne · A Letter</title>
+  <meta name="description" content="A personal letter for Julianne — open the envelope.">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none; /* avoid accidental selection while tapping, but text still selectable after open */
+    }
+
+    body {
+      background: #e8ddce;
+      font-family: 'Georgia', 'Times New Roman', Times, serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      position: relative;
+      background-image: radial-gradient(circle at 10% 20%, rgba(200, 175, 140, 0.1) 2%, transparent 2.5%);
+      background-size: 28px 28px;
+    }
+
+    /* main container acts as a stage */
+    .envelope-stage {
+      width: 100%;
+      max-width: 880px;
+      margin: 0 auto;
+      perspective: 1200px;
+      cursor: pointer;
+    }
+
+    /* envelope wrapper - relative for positioning flaps */
+    .envelope {
+      background: #f5ede1;
+      border-radius: 24px;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.3), 0 0 0 1px #e9dac8 inset, 0 0 0 2px #fffef7 inset;
+      position: relative;
+      transition: all 0.2s ease;
+      transform-style: preserve-3d;
+    }
+
+    /* inner padding area for the "seal" feeling */
+    .envelope-inner {
+      padding: 2rem 2rem 2rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 480px;
+      position: relative;
+      z-index: 2;
+      background: #fcf7ef;
+      border-radius: 20px;
+      transition: all 0.3s;
+    }
+
+    /* envelope flap (top triangle effect) */
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #eedfcb;
+      clip-path: polygon(0% 0%, 100% 0%, 50% 35%);
+      border-radius: 24px 24px 0 0;
+      z-index: 3;
+      transition: all 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      transform-origin: top;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      pointer-events: none;
+    }
+
+    /* envelope bottom fold decorative */
+    .envelope-shadow {
+      position: absolute;
+      bottom: -8px;
+      left: 8px;
+      right: 8px;
+      height: 20px;
+      background: rgba(0, 0, 0, 0.1);
+      filter: blur(8px);
+      border-radius: 50%;
+      z-index: 0;
+      transition: opacity 0.4s;
+    }
+
+    /* seal sticker */
+    .wax-seal {
+      width: 70px;
+      height: 70px;
+      background: #bc8f6b;
+      border-radius: 50%;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+      font-size: 2rem;
+      font-family: 'Segoe UI', serif;
+      transition: transform 0.2s;
+    }
+
+    .invite-text {
+      font-family: 'Courier New', monospace;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      color: #846b50;
+      background: #fff5ea;
+      padding: 0.5rem 1.2rem;
+      border-radius: 60px;
+      border: 1px solid #e2cfb3;
+      backdrop-filter: blur(2px);
+    }
+
+    /* after open state: letter container (initially hidden) */
+    .letter-content {
+      max-width: 880px;
+      width: 100%;
+      background: #fffdf9;
+      border-radius: 28px;
+      box-shadow: 0 24px 42px -18px rgba(0, 0, 0, 0.25);
+      opacity: 0;
+      transform: scale(0.96) translateY(20px);
+      transition: opacity 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.2), transform 0.6s ease;
+      pointer-events: none;
+      position: relative;
+    }
+
+    .letter-content.open-active {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      pointer-events: auto;
+    }
+
+    /* envelope hidden after open with fade + flip */
+    .envelope-stage.hide-envelope .envelope {
+      opacity: 0;
+      transform: rotateX(-15deg) scale(0.92);
+      pointer-events: none;
+      transition: opacity 0.45s, transform 0.5s ease;
+    }
+
+    .envelope-stage {
+      transition: all 0.3s;
+    }
+
+    .letter-paper {
+      padding: 2.5rem 2.2rem;
+    }
+
+    .letter-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      border-bottom: 1px solid #f0e3d4;
+      padding-bottom: 0.65rem;
+      margin-bottom: 1.6rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      color: #9b7c5c;
+    }
+
+    .greeting {
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+      color: #694e32;
+    }
+
+    .message {
+      font-size: 1.03rem;
+      text-align: left;
+      line-height: 1.68;
+    }
+
+    .message p {
+      margin-bottom: 1.25rem;
+    }
+
+    .dot-whisper {
+      background: #fcf5ea;
+      border-left: 4px solid #d4b48c;
+      padding: 0.9rem 1.3rem;
+      margin: 1.5rem 0;
+      border-radius: 16px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.95rem;
+      color: #5c432e;
+    }
+
+    hr.soft-divider {
+      margin: 1.8rem 0 0.5rem 0;
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, #ede0cf, #dcc9ae, #ede0cf);
+    }
+
+    /* tap hint + small animation */
+    .tap-hint {
+      margin-top: 24px;
+      font-size: 0.75rem;
+      font-family: monospace;
+      background: rgba(100, 70, 40, 0.1);
+      padding: 5px 12px;
+      border-radius: 30px;
+      color: #aa8b64;
+    }
+
+    @keyframes gentlePulse {
+      0% { transform: scale(1); opacity: 0.7; }
+      100% { transform: scale(1.05); opacity: 1; }
+    }
+
+    .envelope:hover .wax-seal {
+      animation: gentlePulse 0.8s infinite alternate ease-in-out;
+    }
+
+    /* responsive */
+    @media (max-width: 600px) {
+      .letter-paper {
+        padding: 1.6rem 1.3rem;
+      }
+      .greeting {
+        font-size: 1.25rem;
+      }
+      .message p {
+        font-size: 0.95rem;
+      }
+      .envelope-inner {
+        min-height: 400px;
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="envelope-stage" id="envelopeStage">
+  <div class="envelope" id="envelope">
+    <div class="envelope-flap" id="envelopeFlap"></div>
+    <div class="envelope-inner">
+      <div class="wax-seal">
+        ✦💌✦
+      </div>
+      <div class="invite-text">
+        a letter for you
+      </div>
+      <div class="tap-hint">
+        ✨ tap to open ✨
+      </div>
+    </div>
+    <div class="envelope-shadow"></div>
+  </div>
+</div>
+
+<div class="letter-content" id="letterContent">
+  <div class="letter-paper">
+    <div class="letter-meta">
+      <span>✧ advance happy graduation, Juju ✧</span>
+      <span>🎓</span>
+    </div>
+    <div class="greeting">
+      Dearest Julianne,
+    </div>
+    <div class="message">
+      <p>Advance happy graduation, Juju.</p>
+      <p>As much as I want to do this personally, I don't have the means pa ngayon, ehh. I hope you don't find it cringe, but rather sincere. Kasi ayoko na 'tong maging part ng mga regrets ko. So yes, I am confessing. Hahahaha.</p>
+      <p>Balak ko sana sa June 3 sa concert ng Over October or sa Graduation para personal, kaso mukhang malabo. Naghihirap si tropa ngayon. Napagsama ko pa tuloy yung graduation gift sa confession gift ko, hehe.</p>
+      <p>I don't know kung nahalata mo na noon pa lang or may hints ka na based sa mga actions ko or what. Pero ayun, since 1st year ko pa 'to tinatago. Omsim. Nag-start 'yon nung online class. Isa ka kasi sa mga active sa recit noon, and ang galing mo mag-explain, lalo na sa reporting. Wala ehh, attracted talaga ako sa brainy.</p>
+      <p>Then CWTS. Noon pa lang kita nakita na personally. Tangina, magka-group pa tayo. Tuwang tuwa ako noon kasi magkakaroon na tayo ng interaction since magka-group tayo. Tanda ko pa ang first interaction natin noon. May pinasagutan ka sa'king 4 pics 1 word sa phone ni Jan-jan. Kabado ako noon. Bigla mo na lang hinarap sa'kin yung phone. Buti na lang nasagot ko, "Primary." Sa sobrang delulu ko noon, nagkwento agad ako kay Kulot sa interaction natin. Hahahahaha.</p>
+      <p>I find you attractive kasi academically inclined ka, medyo boyish (no offense, pero yan talaga ang isa sa mga nagustuhan ko sa'yo), straight forward, at syempre, maganda (tangina, yang kilay at mata mo, Madam. Nakakapanghina. Kaya 'di ko kayang makipag-eye contact sa'yo nang seryoso. Natutulala ako, no joke.)</p>
+      <p>Ikukwento ko pa sana yung mga details ng pagiging delulu ko sa'yo, kaso alam kong busy ka pa. Send 1 dot sa Messenger kung gusto mong marinig. Hahahaha.</p>
+      
+      <div class="dot-whisper">
+        💬 “Send 1 dot sa Messenger kung gusto mong marinig.” — I'll be here. no pressure, ever.
+      </div>
+      
+      <p>Baka magtaka ka din na sinabi kong since 1st year pa 'to, eh alam ko naman na alam mo kung sino yung mga nakausap ko that time. And yes, 'di siya maganda. Mukha tuloy akong babaero noon. Alam kong hindi mo kailangan ng explanation, but let me. Kala ko kasi noon, mawawala pa yung nararamdaman ko sa'yo kasi ilang months pa lang naman. Tropa na kasi tayo non and kontento na ako don that time. Nagkekwento ka rin noon na naiinis ka sa mga classmates natin na nagcha-chat sa'yo. Kaya nag-entertain ako sa mga reto sa'kin, and mali 'yon, alam ko. Natakot kasi ako noon na baka may magbago kung itutuloy ko yung feelings ko sa'yo.</p>
+      <p>Wala ehh. Ikaw talaga. Kaya tinago ko na lang. Kabado pa nga ako pag may inuman. Baka bigla akong umamin. Hahahaha.</p>
+      <p>Ayoko lang talaga 'tong maging regret someday, yung hindi ako umamin. Kasi it's been bugging me for days. Yung mga what ifs ko, talagang nanlalaban. "What if umamin ako noong nandyan pa ako?" "What if may chance pala ako?" (Assumero yarn? Kaka-AU mo yan.)</p>
+      <p>Kasi I had plans talaga to pursue you back then. Gusto kitang i-spoil kasi I have the means back then, take you outside, or bigyan ng "just because" gifts. Regret ko talaga 'yan na hindi ko ginawa noon kahit kaya ko naman. Kasi you deserve better than the bare minimum. You are worth pursuing, kaso naduwag ako.</p>
+      <p>Alam ko rin na magtatagal pa tong feelings ko, pero tatanggapin ko kahit anong maging sagot mo. Wala kang obligasyon or anything. Gusto ko lang i-express yung feelings na tinago ko for years.</p>
+    </div>
+    <div class="signature-area">
+      <hr class="soft-divider">
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const stage = document.getElementById('envelopeStage');
+    const envelope = document.getElementById('envelope');
+    const letter = document.getElementById('letterContent');
+    let isOpened = false;
+
+    // if user tapped on envelope stage (or envelope itself)
+    function openLetter(e) {
+      if (isOpened) return;
+      isOpened = true;
+
+      // add animation to flap: lift it up
+      const flap = document.getElementById('envelopeFlap');
+      if (flap) {
+        flap.style.transform = 'rotateX(-110deg)';
+        flap.style.opacity = '0';
+        flap.style.transition = 'transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s';
+      }
+
+      // after flap moves, hide envelope with fade & rotate, then show letter
+      setTimeout(() => {
+        stage.classList.add('hide-envelope');
+        // after envelope hides, show letter smoothly
+        setTimeout(() => {
+          letter.classList.add('open-active');
+          // optional: remove tap cursor from stage so it doesn't re-trigger
+          stage.style.cursor = 'default';
+        }, 180);
+      }, 200);
+    }
+
+    // also add a tiny extra: seal crumble effect on tap (just for joy)
+    stage.addEventListener('click', (e) => {
+      if (!isOpened) {
+        openLetter(e);
+      }
+    });
+
+    // support touch and prevent double firing
+    stage.addEventListener('touchstart', (e) => {
+      if (!isOpened) {
+        e.preventDefault();
+        openLetter(e);
+      }
+    }, { passive: false });
+
+    // little preload : no content hidden, but initial letter hidden (opacity 0)
+    // ensure that after open, letter is fully visible
+    // also remove extra user-select after open
+  })();
+</script>
+
+</body>
+</html>
