@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-  <title>A Letter</title>
+  <title>For Julianne · A Letter</title>
   <meta name="description" content="A personal letter for Julianne — open the envelope.">
   <style>
     * {
@@ -32,7 +32,6 @@
       justify-content: center;
     }
 
-    /* button row */
     .button-wrapper {
       width: 100%;
       max-width: 880px;
@@ -55,7 +54,6 @@
       color: #7b5a3c;
       cursor: pointer;
       transition: all 0.2s ease;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
     }
 
     .back-button:hover {
@@ -63,11 +61,6 @@
       transform: translateY(-2px);
     }
 
-    .back-button:active {
-      transform: translateY(1px);
-    }
-
-    /* music control button */
     .music-control {
       background: #f0e4d4;
       border: 1px solid #c9aa7b;
@@ -89,11 +82,6 @@
       transform: translateY(-2px);
     }
 
-    .music-control:active {
-      transform: translateY(1px);
-    }
-
-    /* envelope */
     .envelope-stage {
       width: 100%;
       max-width: 880px;
@@ -167,7 +155,6 @@
       justify-content: center;
       box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
       font-size: 2.2rem;
-      transition: transform 0.2s;
     }
 
     .invite-text {
@@ -200,7 +187,6 @@
       animation: gentlePulse 0.6s infinite alternate ease-in-out;
     }
 
-    /* letter content */
     .letter-content {
       width: 100%;
       max-width: 880px;
@@ -289,64 +275,25 @@
     }
 
     @media (max-width: 650px) {
-      body {
-        padding: 1rem;
-      }
-      .letter-paper {
-        padding: 1.6rem 1.3rem;
-      }
-      .greeting {
-        font-size: 1.2rem;
-      }
-      .message p {
-        font-size: 0.93rem;
-      }
-      .envelope-inner {
-        min-height: 360px;
-        padding: 2rem 1.2rem;
-      }
-      .wax-seal {
-        width: 65px;
-        height: 65px;
-        font-size: 1.8rem;
-      }
-      .invite-text {
-        font-size: 1rem;
-        padding: 0.4rem 1.2rem;
-      }
-      .back-button, .music-control {
-        padding: 7px 16px;
-        font-size: 0.75rem;
-      }
-      .button-wrapper {
-        justify-content: center;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .envelope-inner {
-        min-height: 320px;
-        padding: 1.5rem 1rem;
-      }
-      .letter-paper {
-        padding: 1.3rem 1rem;
-      }
-      .dot-whisper {
-        padding: 0.7rem 1rem;
-        font-size: 0.88rem;
-      }
+      body { padding: 1rem; }
+      .letter-paper { padding: 1.6rem 1.3rem; }
+      .greeting { font-size: 1.2rem; }
+      .message p { font-size: 0.93rem; }
+      .envelope-inner { min-height: 360px; padding: 2rem 1.2rem; }
+      .wax-seal { width: 65px; height: 65px; font-size: 1.8rem; }
+      .invite-text { font-size: 1rem; padding: 0.4rem 1.2rem; }
+      .back-button, .music-control { padding: 7px 16px; font-size: 0.75rem; }
+      .button-wrapper { justify-content: center; }
     }
   </style>
 </head>
 <body>
   <div class="wrapper">
-    <!-- Button row: back button + music control (hidden until letter opens) -->
     <div class="button-wrapper" id="buttonWrapper" style="display: none;">
       <button class="back-button" id="backButton">← Back to Envelope</button>
       <button class="music-control" id="musicToggle">🎵 Play Song</button>
     </div>
 
-    <!-- Envelope -->
     <div class="envelope-stage" id="envelopeStage">
       <div class="envelope" id="envelope">
         <div class="envelope-flap" id="envelopeFlap"></div>
@@ -359,16 +306,13 @@
       </div>
     </div>
 
-    <!-- Letter Content -->
     <div class="letter-content" id="letterContent">
       <div class="letter-paper">
         <div class="letter-meta">
-          <span>✧ Not a graduation Letter ✧</span>
+          <span>✧ advance happy graduation, Juju ✧</span>
           <span>🎓</span>
         </div>
-        <div class="greeting">
-          Dearest Julianne,
-        </div>
+        <div class="greeting">Dearest Julianne,</div>
         <div class="message">
           <p>Advance happy graduation, Juju.</p>
           <p>As much as I want to do this personally, I don't have the means pa ngayon, ehh. I hope you don't find it cringe, but rather sincere. Kasi ayoko na 'tong maging part ng mga regrets ko. So yes, I am confessing. Hahahaha.</p>
@@ -377,28 +321,20 @@
           <p>Then CWTS. Noon pa lang kita nakita na personally. Tangina, magka-group pa tayo. Tuwang tuwa ako noon kasi magkakaroon na tayo ng interaction since magka-group tayo. Tanda ko pa ang first interaction natin noon. May pinasagutan ka sa'king 4 pics 1 word sa phone ni Jan-jan. Kabado ako noon. Bigla mo na lang hinarap sa'kin yung phone. Buti na lang nasagot ko, "Primary." Sa sobrang delulu ko noon, nagkwento agad ako kay Kulot sa interaction natin. Hahahahaha.</p>
           <p>I find you attractive kasi academically inclined ka, medyo boyish (no offense, pero yan talaga ang isa sa mga nagustuhan ko sa'yo), straight forward, at syempre, maganda (tangina, yang kilay at mata mo, Madam. Nakakapanghina. Kaya 'di ko kayang makipag-eye contact sa'yo nang seryoso. Natutulala ako, no joke.)</p>
           <p>Ikukwento ko pa sana yung mga details ng pagiging delulu ko sa'yo, kaso alam kong busy ka pa. Send 1 dot sa Messenger kung gusto mong marinig. Hahahaha.</p>
-          
-          <div class="dot-whisper">
-            💬 “Send 1 dot sa Messenger kung gusto mong marinig.” — I'll be here. no pressure, ever.
-          </div>
-          
+          <div class="dot-whisper">💬 “Send 1 dot sa Messenger kung gusto mong marinig.” — I'll be here. no pressure, ever.</div>
           <p>Baka magtaka ka din na sinabi kong since 1st year pa 'to, eh alam ko naman na alam mo kung sino yung mga nakausap ko that time. And yes, 'di siya maganda. Mukha tuloy akong babaero noon. Alam kong hindi mo kailangan ng explanation, but let me. Kala ko kasi noon, mawawala pa yung nararamdaman ko sa'yo kasi ilang months pa lang naman. Tropa na kasi tayo non and kontento na ako don that time. Nagkekwento ka rin noon na naiinis ka sa mga classmates natin na nagcha-chat sa'yo. Kaya nag-entertain ako sa mga reto sa'kin, and mali 'yon, alam ko. Natakot kasi ako noon na baka may magbago kung itutuloy ko yung feelings ko sa'yo.</p>
           <p>Wala ehh. Ikaw talaga. Kaya tinago ko na lang. Kabado pa nga ako pag may inuman. Baka bigla akong umamin. Hahahaha.</p>
           <p>Ayoko lang talaga 'tong maging regret someday, yung hindi ako umamin. Kasi it's been bugging me for days. Yung mga what ifs ko, talagang nanlalaban. "What if umamin ako noong nandyan pa ako?" "What if may chance pala ako?" (Assumero yarn? Kaka-AU mo yan.)</p>
           <p>Kasi I had plans talaga to pursue you back then. Gusto kitang i-spoil kasi I have the means back then, take you outside, or bigyan ng "just because" gifts. Regret ko talaga 'yan na hindi ko ginawa noon kahit kaya ko naman. Kasi you deserve better than the bare minimum. You are worth pursuing, kaso naduwag ako.</p>
           <p>Alam ko rin na magtatagal pa tong feelings ko, pero tatanggapin ko kahit anong maging sagot mo. Wala kang obligasyon or anything. Gusto ko lang i-express yung feelings na tinago ko for years.</p>
         </div>
-        <div class="signature-area">
-          <hr class="soft-divider">
-        </div>
+        <div class="signature-area"><hr class="soft-divider"></div>
       </div>
     </div>
   </div>
 
-  <!-- Audio element for local song (place nahuhulog.mp3 in same folder) -->
   <audio id="bgMusic" loop preload="auto">
     <source src="nahuhulog.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
   </audio>
 
   <script>
@@ -414,35 +350,31 @@
       let isMusicPlaying = false;
       let musicStarted = false;
 
-      // Function to start music (must be triggered by user interaction)
-      function startMusic() {
-        if (!musicStarted) {
-          audio.volume = 0.4;
-          audio.play().then(() => {
+      // Force play with multiple attempts
+      function forcePlayMusic() {
+        if (musicStarted && isMusicPlaying) return;
+        
+        audio.volume = 0.4;
+        
+        // Try to play
+        const playPromise = audio.play();
+        
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
             isMusicPlaying = true;
             musicStarted = true;
             if (musicToggle) musicToggle.innerHTML = '🎵 Pause Song';
-          }).catch(err => {
-            console.log("Autoplay blocked - user can tap play button");
+          }).catch(error => {
+            console.log("Play failed:", error);
             isMusicPlaying = false;
             if (musicToggle) musicToggle.innerHTML = '🎵 Play Song';
           });
-        } else if (!isMusicPlaying) {
-          audio.play().then(() => {
-            isMusicPlaying = true;
-            if (musicToggle) musicToggle.innerHTML = '🎵 Pause Song';
-          }).catch(e => console.log("play error", e));
-        } else {
-          audio.pause();
-          isMusicPlaying = false;
-          if (musicToggle) musicToggle.innerHTML = '🎵 Play Song';
         }
       }
 
-      // Toggle music function for button click
       function toggleMusic() {
         if (!musicStarted) {
-          startMusic();
+          forcePlayMusic();
         } else if (isMusicPlaying) {
           audio.pause();
           isMusicPlaying = false;
@@ -455,19 +387,18 @@
         }
       }
 
-      // Open letter function with music start
       function openLetter() {
         if (isOpened) return;
         isOpened = true;
-
-        // Start playing music immediately when opening
-        startMusic();
 
         const flap = document.getElementById('envelopeFlap');
         if (flap) {
           flap.style.transform = 'rotateX(-110deg)';
           flap.style.opacity = '0';
         }
+
+        // Try to play music immediately
+        forcePlayMusic();
 
         setTimeout(() => {
           if (stage) stage.classList.add('hide-envelope');
@@ -478,28 +409,21 @@
         }, 250);
       }
 
-      // Close letter function (music keeps playing for continuity)
       function closeLetter() {
         if (!isOpened) return;
-        
         if (letter) letter.classList.remove('open-active');
-        
         setTimeout(() => {
           if (buttonWrapper) buttonWrapper.style.display = 'none';
           if (stage) stage.classList.remove('hide-envelope');
-          
           const flap = document.getElementById('envelopeFlap');
           if (flap) {
             flap.style.transform = '';
             flap.style.opacity = '';
           }
-          
           isOpened = false;
-          // Music keeps playing in background for smooth experience
         }, 100);
       }
 
-      // Event listeners
       if (stage) {
         stage.addEventListener('click', openLetter);
         stage.addEventListener('touchstart', (e) => {
@@ -508,19 +432,10 @@
         }, { passive: false });
       }
 
-      if (backButton) {
-        backButton.addEventListener('click', closeLetter);
-      }
+      if (backButton) backButton.addEventListener('click', closeLetter);
+      if (musicToggle) musicToggle.addEventListener('click', toggleMusic);
 
-      if (musicToggle) {
-        musicToggle.addEventListener('click', toggleMusic);
-      }
-
-      // Preload audio
       audio.load();
-      
-      // Note: Browser requires user interaction (tapping the envelope) before audio plays.
-      // This is intentional and works perfectly with the envelope tap.
     })();
   </script>
 </body>
